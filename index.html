@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Check-In Mobile Prototype</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="phone-col">
+    <div class="phone" role="group" aria-label="Mobile app prototype"><div class="screen" id="screen"></div></div>
+  </div>
+
+  <aside class="panel">
+    <div>
+      <h1>Check-In / Check-Out, mobile</h1>
+      <p class="intro">Single-user flow across Leads, Contacts, Deals, Meetings and three custom modules. Use a scenario or move the clock, location, permission and network yourself. The phone reacts live, and push notifications arrive on the lock screen.</p>
+    </div>
+
+    <details class="cp" open>
+      <summary>Scenarios</summary>
+      <div class="cp-b">
+        <div class="pgrid" id="presets"></div>
+        <p class="note">Each scenario resets the data, sets the controls and opens the record on the phone.</p>
+      </div>
+    </details>
+
+    <details class="cp" open>
+      <summary>Phone, time and location</summary>
+      <div class="cp-b">
+        <div class="ctl"><label class="lab" for="selRec"><span>Record in focus</span><span id="modeTag"></span></label>
+          <select id="selRec"></select></div>
+        <div class="ctl"><div class="lab"><label for="tm">Time of day</label><span id="tmv"></span></div>
+          <input type="range" id="tm" min="420" max="1200" step="5">
+          <div class="qb" id="tq"></div></div>
+        <div class="ctl"><div class="lab"><label for="dist">Distance to the record's address</label><span id="distv"></span></div>
+          <input type="range" id="dist" min="0" max="3000" step="10">
+          <div class="qb" id="dq"></div></div>
+        <div class="two">
+          <div class="ctl"><label class="lab" for="perm"><span>Location permission</span></label>
+            <select id="perm"><option value="granted">Allowed</option><option value="denied">Denied</option><option value="gps">Location services off</option></select></div>
+          <div class="ctl"><label class="lab" for="addr"><span>Record address</span></label>
+            <select id="addr"><option value="1">Present</option><option value="0">Empty or can't be located</option></select></div>
+        </div>
+        <div class="tg"><span id="netl">Network: online</span><button class="sw" id="net" role="switch" aria-checked="true" aria-labelledby="netl"></button></div>
+        <div class="ctl"><label class="lab" for="ebs"><span>Action not open yet (under team review)</span></label>
+          <select id="ebs"><option value="grey">A: greyed button, message on tap</option><option value="enabled">B: enabled button, snackbar warning on tap</option></select></div>
+      </div>
+    </details>
+
+    <details class="cp">
+      <summary>Admin configuration</summary>
+      <div class="cp-b">
+        <div class="two">
+          <div class="ctl"><label class="lab" for="radius"><span>Check-in radius</span></label>
+            <select id="radius"><option value="100">Strict, 100 m</option><option value="500">Moderate, 500 m</option><option value="1000">Relaxed, 1000 m</option><option value="custom">Custom</option></select>
+            <input type="number" id="radc" min="50" max="5000" step="10" aria-label="Custom radius in metres" hidden></div>
+          <div class="ctl"><label class="lab" for="early"><span>Check-in opens before start</span></label>
+            <select id="early"><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option><option value="120">120 minutes</option></select></div>
+          <div class="ctl"><label class="lab" for="after"><span>Check-out open after end</span></label>
+            <select id="after"><option value="0">Not extended</option><option value="30">30 minutes</option><option value="60">60 minutes</option><option value="120">120 minutes</option></select></div>
+        </div>
+        <div class="tg"><span id="aeL">Allow check-in when the address is empty</span><button class="sw" id="allowE" role="switch" aria-checked="false" aria-labelledby="aeL"></button></div>
+        <div class="tg"><span id="ppL">Push notifications (window opens, arrival)</span><button class="sw" id="pops" role="switch" aria-checked="true" aria-labelledby="ppL"></button></div>
+        <div class="tg"><span id="aiL">Check users in automatically</span><button class="sw" id="autoIn" role="switch" aria-checked="false" aria-labelledby="aiL"></button></div>
+        <p class="note" id="aiN"></p>
+        <div class="tg"><span id="aoL">Check users out automatically</span><button class="sw" id="autoOut" role="switch" aria-checked="false" aria-labelledby="aoL"></button></div>
+        <p class="note" id="aoN"></p>
+        <div class="reqc" id="reqConf" hidden></div>
+        <table class="ftab" id="ftab"></table>
+        <table class="ftab mt" id="mtab"></table>
+      </div>
+    </details>
+
+    <details class="cp" open>
+      <summary>Event log</summary>
+      <div class="cp-b"><ul class="logl" id="log"></ul></div>
+    </details>
+  </aside>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
